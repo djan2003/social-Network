@@ -1,0 +1,7 @@
+.logotip{
+    width: 70px;
+}
+.header{
+    grid-area: h;
+    background-color: green;
+}
