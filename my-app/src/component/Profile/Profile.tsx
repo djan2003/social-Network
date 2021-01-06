@@ -4,31 +4,24 @@ import Ava from "./Ava/Ava";
 import MyPost from "./MyPost/MyPost";
 import NewPost from "./NewPost/NewPost";
 import ItemNewPost from "./ItemNewPost/ItemNewPost";
+import {newPostDataType} from "../../redux/stateType";
 
-type newPostDataType ={
-    id:number
-    postName:string
-    likes:number
+type propsType={
+    newPostData:Array<newPostDataType>
+    addPost:(newPostText:string)=>void
 }
-let newPostData:newPostDataType[]=[
-    {id:1,likes:11, postName:"Это первый пост"},
-    {id:1,likes:12, postName:"Это второй пост"},
-    {id:1,likes:1258, postName:"Это третий пост"},
-]
-let newItemsText = newPostData.map(n=> <ItemNewPost postName={n.postName} likes={n.likes}/>)
-function Profile() {
+
+function Profile(props:propsType) {
+    let newItemsText = props.newPostData.map(n=> <ItemNewPost postName={n.postName} likes={n.likes}/>)
     return (
         <div>
             <img className={s.img1}
                 src="https://avatars.mds.yandex.net/get-pdb/1491599/1d3cac8b-2410-4c51-8abe-453d701707c1/orig"></img>
             <Ava/>
          <MyPost/>
-         <NewPost/>
-
-
+         <NewPost addPost={props.addPost}/>
             <div>
                 {newItemsText}
-
             </div>
 
 
