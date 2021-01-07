@@ -8,37 +8,42 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Users from "./component/Users/Users";
 import Friends from "./component/Friends/Friends";
 import {diaologsDataType, messageDataType, newPostDataType} from "./redux/stateType";
+import {chageTextForPost} from "./redux/state";
 
 
-type PropsType={
-    addPost:(newPostText:string)=>void
-    newPostData:Array<newPostDataType>
+type PropsType = {
+    chageTextForPost:(newText:string)=>void
+    addPost: (newPostText: string) => void
+    newPostData: Array<newPostDataType>
     dialodsData: Array<diaologsDataType>
     messageData: Array<messageDataType>
+    newPostText: string
 }
 
 
-function App(props:PropsType) {
+function App(props: PropsType) {
     return (
         <BrowserRouter>
-        <div className={s.appWrapper}>
-            <Header/>
+            <div className={s.appWrapper}>
+                <Header/>
 
-            <Nav/>
-            <div className={s.content}>
-                {/* eslint-disable-next-line react/jsx-no-undef */}
-                <Route path="/Profile" render={()=><Profile
-                                                    addPost={props.addPost}
-                                                    newPostData={props.newPostData} />}/>
-                <Route path="/Dialogs" render={()=><Dialogs dialodsData={props.dialodsData}
-                                                            messageData={props.messageData}
+                <Nav/>
+                <div className={s.content}>
+                    {/* eslint-disable-next-line react/jsx-no-undef */}
+                    <Route path="/Profile" render={() => <Profile
+                        chageTextForPost={chageTextForPost}
+                        newPostText={props.newPostText}
+                        addPost={props.addPost}
+                        newPostData={props.newPostData}/>}/>
+                    <Route path="/Dialogs" render={() => <Dialogs dialodsData={props.dialodsData}
+                                                                  messageData={props.messageData}
 
-                />}/>
-                <Route path="/Users" render={()=><Users/>}/>
-                <Route path="/Friends" render={()=><Friends/>}/>
+                    />}/>
+                    <Route path="/Users" render={() => <Users/>}/>
+                    <Route path="/Friends" render={() => <Friends/>}/>
 
+                </div>
             </div>
-        </div>
         </BrowserRouter>
     );
 }

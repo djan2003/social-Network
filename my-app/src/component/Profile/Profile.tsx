@@ -5,10 +5,14 @@ import MyPost from "./MyPost/MyPost";
 import NewPost from "./NewPost/NewPost";
 import ItemNewPost from "./ItemNewPost/ItemNewPost";
 import {newPostDataType} from "../../redux/stateType";
+import {chageTextForPost} from "../../redux/state";
+import App from "../../App";
 
 type propsType={
+    chageTextForPost:(newText:string)=>void
     newPostData:Array<newPostDataType>
     addPost:(newPostText:string)=>void
+    newPostText:string
 }
 
 function Profile(props:propsType) {
@@ -19,7 +23,10 @@ function Profile(props:propsType) {
                 src="https://avatars.mds.yandex.net/get-pdb/1491599/1d3cac8b-2410-4c51-8abe-453d701707c1/orig"></img>
             <Ava/>
          <MyPost/>
-         <NewPost addPost={props.addPost}/>
+         <NewPost
+             chageTextForPost={chageTextForPost}
+             newPostText={props.newPostText}
+             addPost={props.addPost}/>
             <div>
                 {newItemsText}
             </div>

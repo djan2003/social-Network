@@ -5,8 +5,11 @@ export type stateType = {
     newPostData:Array<newPostDataType>
     dialodsData:Array<diaologsDataType>
     messageData:Array<messageDataType>
+    newPostText:string
 }
-
+export type rerenderTreeType={
+    rerenderTree:(state:stateType)=>void
+}
 
 
 export let state:stateType = {
@@ -28,7 +31,8 @@ export let state:stateType = {
         {text: "Пока", id: 2},
         {text: "АГА", id: 3},
 
-    ]
+    ],
+    newPostText:""
 }
 
 export const addPost=(newPostText:string)=>{
@@ -38,5 +42,10 @@ export const addPost=(newPostText:string)=>{
         postName:newPostText
     }
     state.newPostData.push(newPost)
-    rerenderTree()
+    state.newPostText="";
+    rerenderTree(state)
+}
+export const chageTextForPost=(newText:string)=>{
+    state.newPostText=newText;
+    rerenderTree(state)
 }
