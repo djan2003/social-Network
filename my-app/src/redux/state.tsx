@@ -1,17 +1,11 @@
 import React from "react";
 import {diaologsDataType, messageDataType, newPostDataType} from "./stateType";
-import {rerenderTree} from "../Rerender";
 export type stateType = {
     newPostData:Array<newPostDataType>
     dialodsData:Array<diaologsDataType>
     messageData:Array<messageDataType>
     newPostText:string
 }
-export type rerenderTreeType={
-    rerenderTree:(state:stateType)=>void
-}
-
-
 export let state:stateType = {
     newPostData:[
         {id: 1, likes: 11, postName: "Это первый пост"},
@@ -35,6 +29,16 @@ export let state:stateType = {
     newPostText:""
 }
 
+
+let rerender = ()=>{
+    console.log("check")
+}
+export const subscriber=(observer:()=>void)=>{
+    rerender=observer
+}
+
+
+
 export const addPost=(newPostText:string)=>{
     const newPost={
         id:5,
@@ -43,9 +47,9 @@ export const addPost=(newPostText:string)=>{
     }
     state.newPostData.push(newPost)
     state.newPostText="";
-    rerenderTree(state)
+    rerender()
 }
 export const chageTextForPost=(newText:string)=>{
     state.newPostText=newText;
-    rerenderTree(state)
+    rerender()
 }
