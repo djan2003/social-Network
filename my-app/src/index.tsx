@@ -1,24 +1,27 @@
 import React from 'react';
 import './index.css';
-import {addPost, chageTextForPost, state, subscriber} from "./redux/state";
+import {store} from "./redux/redux-store";
 import ReactDOM from "react-dom";
 import App from "./App";
 
 
 const rerenderTree=()=>{
+    const state=store.getState();
     ReactDOM.render(
         <React.StrictMode>
             <App
-                chageTextForPost={chageTextForPost}
-                addPost={addPost}
-                newPostData={state.newPostData}
-                dialodsData={state.dialodsData}
-                messageData={state.messageData}
-                newPostText={state.newPostText}
+                store={store}
+                state={state}
+                dispatch={store.dispatch.bind(store)}
+                newPostData={state.profilePageReduser.newPostData}
+                dialodsData={state.dialogsPageReduser.dialodsData}
+                messageData={state.dialogsPageReduser.messageData}
+                newPostText={state.profilePageReduser.newPostText}
+                newMessageText={state.dialogsPageReduser.newMessageText}
             />
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 rerenderTree();
-subscriber(rerenderTree);
+store.subscribe(rerenderTree);

@@ -1,55 +1,83 @@
 import React from "react";
 import {diaologsDataType, messageDataType, newPostDataType} from "./stateType";
-export type stateType = {
+import {AddPostActionType, ChageTextForPostActionType, profilePageReduser} from "./ProfilePageReducer";
+import {AddNewMessageAC, ChangetextForMessageAC, dialogsPageReduser} from "./DialogsPageReducer";
+
+type profilePageType={
     newPostData:Array<newPostDataType>
-    dialodsData:Array<diaologsDataType>
-    messageData:Array<messageDataType>
     newPostText:string
 }
-export let state:stateType = {
-    newPostData:[
-        {id: 1, likes: 11, postName: "Это первый пост"},
-        {id: 1, likes: 12, postName: "Это второй пост"},
-        {id: 1, likes: 1258, postName: "Это третий пост"},
-    ],
-    dialodsData:[
-        {name: "Slava", id: 1},
-        {name: "Anna", id: 2},
-        {name: "Alina", id: 3},
-        {name: "Maksim", id: 4},
-        {name: "Svetlana", id: 5},
-
-    ],
-    messageData:[
-        {text: "Привет", id: 1},
-        {text: "Пока", id: 2},
-        {text: "АГА", id: 3},
-
-    ],
-    newPostText:""
+type dialogsPage={
+    dialodsData:Array<diaologsDataType>
+    messageData:Array<messageDataType>
+    newMessageText:string
 }
+export type stateType = {
+    profilePage:profilePageType
+    dialogsPage:dialogsPage
 
-
-let rerender = ()=>{
-    console.log("check")
 }
-export const subscriber=(observer:()=>void)=>{
-    rerender=observer
+export type ActionType=AddPostActionType|ChageTextForPostActionType|ChangetextForMessageType|AddNewMessageType ;
+
+type  ChangetextForMessageType =ReturnType<typeof ChangetextForMessageAC>
+type  AddNewMessageType =ReturnType<typeof AddNewMessageAC>
+type StoreType={
+    _state:stateType
+    rerender:()=>void
+    subscriber:(observer:()=>void)=>void
+    getState:()=>stateType
+    dispatch:(action:ActionType)=>void
 }
 
 
 
-export const addPost=(newPostText:string)=>{
-    const newPost={
-        id:5,
-        likes:0,
-        postName:newPostText
+
+export const store:StoreType ={
+    _state:{
+        profilePage: {
+            newPostData: [
+                {id: 1, likes: 11, postName: "Это первый пост"},
+                {id: 1, likes: 12, postName: "Это второй пост"},
+                {id: 1, likes: 1258, postName: "Это третий пост"},
+            ],
+            newPostText: ""
+        },
+        dialogsPage:{
+            dialodsData:[
+                {name: "Slava", id: 1},
+                {name: "Anna", id: 2},
+                {name: "Alina", id: 3},
+                {name: "Maksim", id: 4},
+                {name: "Svetlana", id: 5},
+
+            ],
+            messageData:[
+                {text: "Привет", id: 1},
+                {text: "Пока", id: 2},
+                {text: "АГА", id: 3},
+            ],
+            newMessageText:""
+        }
+
+
+    },
+    getState(){ return this._state},
+    rerender  (){
+        console.log("check")
+    },
+    subscriber (observer:()=>void){
+        this.rerender=observer
+    },
+    dispatch(action) {
+        this._state.profilePage=profilePageReduser(this._state.profilePage, action)
+        this._state.dialogsPage=dialogsPageReduser(this._state.dialogsPage, action)
+        this.rerender()
     }
-    state.newPostData.push(newPost)
-    state.newPostText="";
-    rerender()
+
 }
-export const chageTextForPost=(newText:string)=>{
-    state.newPostText=newText;
-    rerender()
-}
+
+
+
+
+
+

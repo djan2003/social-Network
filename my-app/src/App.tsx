@@ -8,16 +8,20 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Users from "./component/Users/Users";
 import Friends from "./component/Friends/Friends";
 import {diaologsDataType, messageDataType, newPostDataType} from "./redux/stateType";
-import {chageTextForPost} from "./redux/state";
+import {ActionType, store} from "./redux/state";
+import {StoreType} from "./redux/redux-store";
+import DialogsContainer from "./component/Dialogs/DialogsContainer";
 
 
 type PropsType = {
-    chageTextForPost:(newText:string)=>void
-    addPost: (newPostText: string) => void
+    store:StoreType
+    state:any
+    dispatch:(action:ActionType)=>void
     newPostData: Array<newPostDataType>
     dialodsData: Array<diaologsDataType>
     messageData: Array<messageDataType>
     newPostText: string
+    newMessageText:string
 }
 
 
@@ -31,12 +35,13 @@ function App(props: PropsType) {
                 <div className={s.content}>
                     {/* eslint-disable-next-line react/jsx-no-undef */}
                     <Route path="/Profile" render={() => <Profile
-                        chageTextForPost={chageTextForPost}
-                        newPostText={props.newPostText}
-                        addPost={props.addPost}
+                        store={props.store}
                         newPostData={props.newPostData}/>}/>
-                    <Route path="/Dialogs" render={() => <Dialogs dialodsData={props.dialodsData}
+                    <Route path="/Dialogs" render={() => <DialogsContainer dialodsData={props.dialodsData}
                                                                   messageData={props.messageData}
+                                                                  newMessageText={props.newMessageText}
+                                                                  dispatch={props.dispatch}
+                                                                  store={props.store}
 
                     />}/>
                     <Route path="/Users" render={() => <Users/>}/>
