@@ -5,9 +5,8 @@ import MyPost from "./MyPost/MyPost";
 import NewPost from "./NewPost/NewPost";
 import ItemNewPost from "./ItemNewPost/ItemNewPost";
 import {newPostDataType} from "../../redux/stateType";
-import {ActionType} from "../../redux/state";
-import NewPostContainer from "./NewPost/NewPostContainer";
 import {StoreType} from "../../redux/redux-store";
+import {NewPostContainer1} from "./NewPost/NewPostContainer";
 
 type propsType={
     store:StoreType
@@ -23,9 +22,7 @@ function Profile(props:propsType) {
                 src="https://avatars.mds.yandex.net/get-pdb/1491599/1d3cac8b-2410-4c51-8abe-453d701707c1/orig"></img>
             <Ava/>
          <MyPost/>
-         <NewPostContainer
-             store={props.store}
-             />
+         <NewPostContainer1/>
             <div>
                 {newItemsText}
             </div>

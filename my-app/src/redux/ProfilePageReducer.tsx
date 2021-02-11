@@ -35,12 +35,17 @@ export const profilePageReduser=(state=initialState,action:ActionType)=>{
                 likes:0,
                 postName:action.newPostText
             }
-            state.newPostData.push(newPost)
-            state.newPostText="";
+            let stateCopy={...state}
+            stateCopy.newPostData=[...state.newPostData]
+            stateCopy.newPostData.push(newPost)
+            stateCopy.newPostText="";
+            return stateCopy
 
         }
         else if (action.type === "CHANGE-TEXT-FOR-POST"){
-            state.newPostText=action.newText;
+            let stateCopy = {...state}
+            stateCopy.newPostText=action.newText;
+            return stateCopy
         }
         return state;
     }

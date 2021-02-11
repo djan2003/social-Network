@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './App.module.css';
-import Dialogs from './component/Dialogs/Dialogs';
 import Header from "./component/Header/Header";
 import Nav from "./component/Nav/Nav";
 import Profile from "./component/Profile/Profile";
@@ -10,22 +9,24 @@ import Friends from "./component/Friends/Friends";
 import {diaologsDataType, messageDataType, newPostDataType} from "./redux/stateType";
 import {ActionType, store} from "./redux/state";
 import {StoreType} from "./redux/redux-store";
-import DialogsContainer from "./component/Dialogs/DialogsContainer";
+import  {DialogContainer1} from "./component/Dialogs/DialogsContainer";
+import {UsersContainer} from "./component/Users/UsersContainer";
 
 
 type PropsType = {
-    store:StoreType
-    state:any
-    dispatch:(action:ActionType)=>void
+    store: StoreType
+    state: any
+    dispatch: (action: ActionType) => void
     newPostData: Array<newPostDataType>
     dialodsData: Array<diaologsDataType>
     messageData: Array<messageDataType>
     newPostText: string
-    newMessageText:string
+    newMessageText: string
 }
 
 
 function App(props: PropsType) {
+
     return (
         <BrowserRouter>
             <div className={s.appWrapper}>
@@ -37,14 +38,14 @@ function App(props: PropsType) {
                     <Route path="/Profile" render={() => <Profile
                         store={props.store}
                         newPostData={props.newPostData}/>}/>
-                    <Route path="/Dialogs" render={() => <DialogsContainer dialodsData={props.dialodsData}
-                                                                  messageData={props.messageData}
-                                                                  newMessageText={props.newMessageText}
-                                                                  dispatch={props.dispatch}
-                                                                  store={props.store}
-
-                    />}/>
-                    <Route path="/Users" render={() => <Users/>}/>
+                    <Route path="/Dialogs" render={() =><DialogContainer1/>
+                        /*<DialogsContainer dialodsData={props.dialodsData}
+                                          messageData={props.messageData}
+                                          newMessageText={props.newMessageText}
+                                          dispatch={props.dispatch}
+                                          store={props.store}/>*/
+                    }/>
+                    <Route path="/Users" render={() => <UsersContainer/>}/>
                     <Route path="/Friends" render={() => <Friends/>}/>
 
                 </div>

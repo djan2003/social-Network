@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import {ActionType} from "./state";
 
 export const ChangetextForMessageAC = ( newMessageText:string)=>{
@@ -39,11 +39,18 @@ export const dialogsPageReduser=(state=initialState,action:ActionType)=>{
             text: action.messageText,
             id: 55
         }
-        state.messageData.push(newMessage)
-        state.newMessageText = "";
-        state.newMessageText = action.messageText;
+        return {
+            ...state,
+            messageData: [...state.messageData,newMessage],
+            newMessageText: ""
+        }
+
     } else if (action.type === "CHANGE-TEXT-FOR-MESSAGE") {
-        state.newMessageText = action.newMessageText;
+        return {
+            ...state,
+            newMessageText: action.newMessageText
+        }
+
     }
         return state;
     }

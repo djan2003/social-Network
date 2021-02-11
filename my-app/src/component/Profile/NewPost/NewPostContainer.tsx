@@ -2,30 +2,20 @@ import React from "react";
 
 import {AddPostAC, ChageTextForPostAC} from "../../../redux/ProfilePageReducer";
 import NewPost from "./NewPost";
-import {StoreType} from "../../../redux/redux-store";
+import {connect} from "react-redux";
+import {ActionType} from "../../../redux/state";
 
-type propsType={
-    store:StoreType
-}
-
-
-
-function NewPostContainer(props:propsType) {
-    const changeTextForPost=(text:any)=>{
-        let action = ChageTextForPostAC(text)
-        props.store.dispatch(action)
+let mapStateToProps = (state: any) => {
+    return {
+        newPostText: state.profilePageReduser.newPostText
     }
-    const addPost = (text:any)=>{
-        let action=AddPostAC(text)
-            props.store.dispatch(action)
 
-    }
-return(
-   <NewPost newPostText={props.store.getState().profilePageReduser.newPostText}
-            changeTextForPost={changeTextForPost}
-            addPost={addPost}
-
-   />
-)
 }
-export default NewPostContainer;
+let mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
+    return{
+        changeTextForPost:(text: string)=>dispatch(ChageTextForPostAC(text)),
+        addPost:(text:string)=>dispatch( AddPostAC(text))
+    }
+
+}
+export const NewPostContainer1 = connect(mapStateToProps,mapDispatchToProps)(NewPost)
