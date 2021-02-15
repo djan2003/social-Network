@@ -4,7 +4,6 @@ import Header from "./component/Header/Header";
 import Nav from "./component/Nav/Nav";
 import Profile from "./component/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
-import Users from "./component/Users/Users";
 import Friends from "./component/Friends/Friends";
 import {diaologsDataType, messageDataType, newPostDataType} from "./redux/stateType";
 import {ActionType, store} from "./redux/state";

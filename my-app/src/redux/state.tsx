@@ -2,7 +2,7 @@ import React from "react";
 import {diaologsDataType, messageDataType, newPostDataType} from "./stateType";
 import {AddPostActionType, ChageTextForPostActionType, profilePageReduser} from "./ProfilePageReducer";
 import {AddNewMessageAC, ChangetextForMessageAC, dialogsPageReduser} from "./DialogsPageReducer";
-import {followAC, setUsersAC, unFollowAC} from "./UsersReducer";
+import {followAC, setUsersAC, unFollowAC,setCurrentPageAC, setTotalUsersCountAC} from "./UsersReducer";
 
 type profilePageType = {
     newPostData: Array<newPostDataType>
@@ -24,12 +24,16 @@ export type ActionType = AddPostActionType |
     AddNewMessageType |
     FollowACType |
     UnFollowACType|
+    setCurrentPageAC|
+    setTotalUsersCountAC|
    setUsersACType;
 
 type  ChangetextForMessageType = ReturnType<typeof ChangetextForMessageAC>
 type  setUsersACType = ReturnType<typeof setUsersAC>
 type  FollowACType = ReturnType<typeof followAC>
 type  UnFollowACType = ReturnType<typeof unFollowAC>
+type  setCurrentPageAC = ReturnType<typeof setCurrentPageAC>
+type   setTotalUsersCountAC = ReturnType<typeof  setTotalUsersCountAC>
 type  AddNewMessageType = ReturnType<typeof AddNewMessageAC>
 type StoreType = {
     _state: stateType
