@@ -1,4 +1,6 @@
+
 import React from "react";
+/*
 import {diaologsDataType, messageDataType, newPostDataType} from "./stateType";
 import {
     AddPostActionType,
@@ -31,7 +33,7 @@ export type stateType = {
     dialogsPage: dialogsPage
 
 }
-export type ActionType = AddPostActionType |
+/!*export type ActionType = AddPostActionType |
     ChageTextForPostActionType |
     ChangetextForMessageType |
     AddNewMessageType |
@@ -50,7 +52,7 @@ type  FollowACType = ReturnType<typeof follow>
 type  UnFollowACType = ReturnType<typeof unFollow>
 type  setCurrentPageAC = ReturnType<typeof setCurrentPage>
 type   setTotalUsersCountAC = ReturnType<typeof  setTotalUsersCount>
-type  AddNewMessageType = ReturnType<typeof AddNewMessageAC>
+type  AddNewMessageType = ReturnType<typeof AddNewMessageAC>*!/
 type StoreType = {
     _state: stateType
     rerender: () => void
@@ -112,3 +114,4 @@ export const store: StoreType = {
 
 
 
+*/

@@ -1,7 +1,9 @@
 import React, {ChangeEvent} from "react";
 import {diaologsDataType, messageDataType} from "../../redux/stateType";
-import {ActionType, stateType} from "../../redux/state";
-import {AddNewMessageAC, ChangetextForMessageAC} from "../../redux/DialogsPageReducer";
+import {
+    addMessage,
+    changetextForMessage
+} from "../../redux/DialogsPageReducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 
@@ -25,15 +27,6 @@ let mapStateToProps=(state:any)=>{
     }
 
 }
-let mapDispatchToProps=(dispatch:(action:ActionType)=>void)=>{
-    return{
-        changetextForMessage:(text:string)=>{
-            dispatch(ChangetextForMessageAC(text))
-        },
-        addMessage:(text:string)=>{
-            dispatch(AddNewMessageAC(text))
-        }
-    }
-}
 
-export const DialogContainer1=connect(mapStateToProps,mapDispatchToProps)(Dialogs)
+
+export const DialogContainer1=connect(mapStateToProps,{changetextForMessage,addMessage})(Dialogs)

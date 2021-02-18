@@ -4,7 +4,6 @@ import {StoreType} from "../../redux/redux-store";
 import Profile from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import {stateType} from "../../redux/state";
 import {setUsersProfile} from "../../redux/ProfilePageReducer";
 import  {withRouter} from "react-router-dom"
 import { RouteComponentProps } from 'react-router';
@@ -20,14 +19,12 @@ import { RouteComponentProps } from 'react-router';
 type ParamsType={
     userID:string
 }
-type PropsFromApp={
-    store:StoreType
-    newPostData:Array<newPostDataType>
-}
-type OwnPropsType=MapStateToPropsType&MapDispatchToProps&PropsFromApp
+type OwnPropsType=MapStateToPropsType&MapDispatchToProps
 type PropsType=OwnPropsType&RouteComponentProps<ParamsType>
 type MapStateToPropsType ={
     profile:any
+    newPostData:Array<newPostDataType>
+
 }
 type MapDispatchToProps={
     setUsersProfile:(profile:any)=>void
@@ -49,7 +46,8 @@ export class ProfileContainer extends React.Component<PropsType>{
 
 const mapStateToProps=(state:any):MapStateToPropsType=>{
     return{
-profile:state.profilePageReduser.profile
+profile:state.profilePageReduser.profile,
+        newPostData:state.profilePageReduser.newPostData
     }
 }
 

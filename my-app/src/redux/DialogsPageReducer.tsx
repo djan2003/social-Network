@@ -1,13 +1,13 @@
  import React from "react";
-import {ActionType} from "./state";
+ import {ActionType} from "./stateType";
 
-export const ChangetextForMessageAC = ( newMessageText:string)=>{
+export const changetextForMessage = ( newMessageText:string)=>{
     return{
         type:"CHANGE-TEXT-FOR-MESSAGE",
         newMessageText: newMessageText
     } as const
 }
-export const AddNewMessageAC = ( messageText:string)=>{
+export const addMessage = ( messageText:string)=>{
     return{
         type:"ADD-NEW-MESSAGE",
         messageText: messageText

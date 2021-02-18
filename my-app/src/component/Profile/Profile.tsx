@@ -8,7 +8,6 @@ import {StoreType} from "../../redux/redux-store";
 import {NewPostContainer1} from "./NewPost/NewPostContainer";
 
 type propsType={
-    store:StoreType
     newPostData:Array<newPostDataType>
     profile:any
 

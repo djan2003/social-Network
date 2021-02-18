@@ -3,7 +3,7 @@ import React from "react";
 import {AddPostAC, ChageTextForPostAC} from "../../../redux/ProfilePageReducer";
 import NewPost from "./NewPost";
 import {connect} from "react-redux";
-import {ActionType} from "../../../redux/state";
+import {ActionType} from "../../../redux/stateType";
 
 let mapStateToProps = (state: any) => {
     return {

@@ -1,4 +1,7 @@
 import React from "react";
+import {AddPostActionType, ChageTextForPostActionType, setUsersProfileActionType} from "./ProfilePageReducer";
+import {addMessage,  changetextForMessage} from "./DialogsPageReducer";
+import {follow, setCurrentPage, setTotalUsersCount, setUsers, toogleIsFetching, unFollow} from "./UsersReducer";
 
 export type newPostDataType = {
     id: number
@@ -13,3 +16,23 @@ export type messageDataType = {
     text: string
     id: number
 }
+export type ActionType = AddPostActionType |
+    ChageTextForPostActionType |
+    ChangetextForMessageType |
+    AddNewMessageType |
+    FollowACType |
+    UnFollowACType|
+    setCurrentPageAC|
+    setTotalUsersCountAC|
+    toogleIsFetchingACType|
+    setUsersProfileActionType|
+    setUsersACType;
+
+type  ChangetextForMessageType = ReturnType<typeof  changetextForMessage>
+type  toogleIsFetchingACType = ReturnType<typeof toogleIsFetching>
+type  setUsersACType = ReturnType<typeof setUsers>
+type  FollowACType = ReturnType<typeof follow>
+type  UnFollowACType = ReturnType<typeof unFollow>
+type  setCurrentPageAC = ReturnType<typeof setCurrentPage>
+type   setTotalUsersCountAC = ReturnType<typeof  setTotalUsersCount>
+type  AddNewMessageType = ReturnType<typeof addMessage>

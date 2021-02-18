@@ -1,5 +1,5 @@
 import React from "react";
-import {ActionType} from "./state";
+import {ActionType} from "./stateType";
 
 export type AddPostActionType=ReturnType<typeof AddPostAC >;
 export type ChageTextForPostActionType=ReturnType<typeof ChageTextForPostAC >;

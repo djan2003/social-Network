@@ -22,7 +22,7 @@ type PropsType={
     setCurrentPage:(currentPage:number)=>void
     follow:(id:number)=>void
     unFollow:(id:number)=>void
-    setUsers:any
+    setUsers:(state:any)=>void
     totalUsersCount:number
     pageSize:number
     currentPage:number
@@ -82,29 +82,7 @@ let mapStateToProps = (state: any) => {
         isFetching:state.usersReduser.isFetching
     }
 }
-/*let mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
-    return {
-        setTotalUsersCount: (totalUsersCount: number) => {
-            dispatch(setTotalUsersCountAC(totalUsersCount))
-        },
-        follow: (id: number) => {
-            dispatch(followAC(id))
-        },
-        Unfollow: (id: number) => {
-            dispatch(unFollowAC(id))
-        },
-        SetUsers: (users: UsersType) => {
-            dispatch(setUsersAC(users))
-        },
-        SetCurrentPage: (currentPage: number) => {
-            dispatch(setCurrentPageAC(currentPage))
-        },
-        ToogleIsFetching:(isFetching:boolean)=>{
-            dispatch(toogleIsFetchingAC(isFetching))
-        }
 
-    }
-}*/
 export const UsersContainer = connect(mapStateToProps,{
     setTotalUsersCount,
     follow,
