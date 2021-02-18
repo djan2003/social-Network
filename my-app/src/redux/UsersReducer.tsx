@@ -2,31 +2,38 @@ import React from "react";
 import {ActionType} from "./state";
 
 
-export const followAC = ( id:number)=>{
+export const follow = ( id:number)=>{
     return{
         type:"FOLLOW",
        id:id
     } as const
 }
-export const unFollowAC = (id:number)=>{
+export const unFollow = (id:number)=>{
     return{
         type:"UNFOLLOW",
         id:id
     } as const
 }
-export const setUsersAC=(users:any)=>{
+export const setUsers=(users:any)=>{
     return{
         type:"SET-USERS",
         users:users
     }as const
 }
-export const setCurrentPageAC=(currentPage:number)=>{
+export const toogleIsFetching=(isFetching:boolean)=>{
+    return{
+        type:"TOOGLE-IS-FETCHING",
+        isFetching
+
+    }as const
+}
+export const setCurrentPage=(currentPage:number)=>{
     return{
         type:"SET-CURRENT-PAGE",
         currentPage
     }as const
 }
-export const setTotalUsersCountAC=(totalUsersCount:number)=>{
+export const setTotalUsersCount=(totalUsersCount:number)=>{
     return{
         type:"SET-TOTAL-USERS-COUNT",
         totalUsersCount
@@ -50,12 +57,14 @@ type InitialStateType = {
     pageSize:number
     totalUsersCount:number
     currentPage:number
+    isFetching:boolean
 }
 let initialState:InitialStateType = {
     users:[],
     pageSize:5,
     totalUsersCount:0,
-    currentPage:2
+    currentPage:1,
+    isFetching:true
 }
 
 
@@ -89,6 +98,9 @@ export const usersReduser=(state=initialState,action:ActionType)=>{
     }
     else if(action.type==="SET-TOTAL-USERS-COUNT"){
         return{...state, totalUsersCount:action.totalUsersCount}
+    }
+    else if(action.type==="TOOGLE-IS-FETCHING"){
+        return{...state, isFetching:action.isFetching}
     }
     else return state
 

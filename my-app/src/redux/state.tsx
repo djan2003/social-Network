@@ -1,12 +1,25 @@
 import React from "react";
 import {diaologsDataType, messageDataType, newPostDataType} from "./stateType";
-import {AddPostActionType, ChageTextForPostActionType, profilePageReduser} from "./ProfilePageReducer";
+import {
+    AddPostActionType,
+    ChageTextForPostActionType,
+    profilePageReduser,
+    setUsersProfileActionType
+} from "./ProfilePageReducer";
 import {AddNewMessageAC, ChangetextForMessageAC, dialogsPageReduser} from "./DialogsPageReducer";
-import {followAC, setUsersAC, unFollowAC,setCurrentPageAC, setTotalUsersCountAC} from "./UsersReducer";
+import {
+    follow,
+    setUsers,
+    unFollow,
+    setCurrentPage,
+    setTotalUsersCount,
+    toogleIsFetching
+} from "./UsersReducer";
 
 type profilePageType = {
     newPostData: Array<newPostDataType>
     newPostText: string
+    profile:any
 }
 type dialogsPage = {
     dialodsData: Array<diaologsDataType>
@@ -26,14 +39,17 @@ export type ActionType = AddPostActionType |
     UnFollowACType|
     setCurrentPageAC|
     setTotalUsersCountAC|
-   setUsersACType;
+    toogleIsFetchingACType|
+    setUsersProfileActionType|
+     setUsersACType;
 
 type  ChangetextForMessageType = ReturnType<typeof ChangetextForMessageAC>
-type  setUsersACType = ReturnType<typeof setUsersAC>
-type  FollowACType = ReturnType<typeof followAC>
-type  UnFollowACType = ReturnType<typeof unFollowAC>
-type  setCurrentPageAC = ReturnType<typeof setCurrentPageAC>
-type   setTotalUsersCountAC = ReturnType<typeof  setTotalUsersCountAC>
+type  toogleIsFetchingACType = ReturnType<typeof toogleIsFetching>
+type  setUsersACType = ReturnType<typeof setUsers>
+type  FollowACType = ReturnType<typeof follow>
+type  UnFollowACType = ReturnType<typeof unFollow>
+type  setCurrentPageAC = ReturnType<typeof setCurrentPage>
+type   setTotalUsersCountAC = ReturnType<typeof  setTotalUsersCount>
 type  AddNewMessageType = ReturnType<typeof AddNewMessageAC>
 type StoreType = {
     _state: stateType
@@ -52,7 +68,8 @@ export const store: StoreType = {
                 {id: 1, likes: 12, postName: "Это второй пост"},
                 {id: 1, likes: 1258, postName: "Это третий пост"},
             ],
-            newPostText: ""
+            newPostText: "",
+            profile:null
         },
         dialogsPage: {
             dialodsData: [

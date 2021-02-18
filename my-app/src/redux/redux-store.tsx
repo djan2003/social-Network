@@ -12,3 +12,5 @@ let redusers =combineReducers({
 })
 
 export let store = createStore(redusers);
+// @ts-ignore
+window.store=store;

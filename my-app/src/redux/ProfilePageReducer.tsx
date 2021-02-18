@@ -3,6 +3,7 @@ import {ActionType} from "./state";
 
 export type AddPostActionType=ReturnType<typeof AddPostAC >;
 export type ChageTextForPostActionType=ReturnType<typeof ChageTextForPostAC >;
+export type setUsersProfileActionType=ReturnType<typeof setUsersProfile >;
 
 
 export const AddPostAC = (newPostText:string)=>{
@@ -17,6 +18,12 @@ export const ChageTextForPostAC = ( newText:string)=>{
         newText: newText
     } as const
 }
+export const setUsersProfile = ( profile:any)=>{
+    return{
+        type:"SET-USERS-PROFILE",
+        profile
+    } as const
+}
 
 let initialState = {
     newPostData: [
@@ -24,7 +31,8 @@ let initialState = {
         {id: 1, likes: 12, postName: "Это второй пост"},
         {id: 1, likes: 1258, postName: "Это третий пост"},
     ],
-    newPostText: ""
+    newPostText: "",
+    profile:{}
 }
 
 export const profilePageReduser=(state=initialState,action:ActionType)=>{
@@ -45,6 +53,11 @@ export const profilePageReduser=(state=initialState,action:ActionType)=>{
         else if (action.type === "CHANGE-TEXT-FOR-POST"){
             let stateCopy = {...state}
             stateCopy.newPostText=action.newText;
+            return stateCopy
+        }
+        else if (action.type === "SET-USERS-PROFILE"){
+            let stateCopy = {...state}
+            stateCopy.profile=action.profile;
             return stateCopy
         }
         return state;

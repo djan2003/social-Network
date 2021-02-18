@@ -10,6 +10,7 @@ import {ActionType, store} from "./redux/state";
 import {StoreType} from "./redux/redux-store";
 import  {DialogContainer1} from "./component/Dialogs/DialogsContainer";
 import {UsersContainer} from "./component/Users/UsersContainer";
+import {ProfileContainer, ProfileMainContainer} from "./component/Profile/ProfileContainer";
 
 
 type PropsType = {
@@ -26,6 +27,7 @@ type PropsType = {
 
 function App(props: PropsType) {
 
+
     return (
         <BrowserRouter>
             <div className={s.appWrapper}>
@@ -34,9 +36,10 @@ function App(props: PropsType) {
                 <Nav/>
                 <div className={s.content}>
                     {/* eslint-disable-next-line react/jsx-no-undef */}
-                    <Route path="/Profile" render={() => <Profile
-                        store={props.store}
-                        newPostData={props.newPostData}/>}/>
+                    <Route path="/Profile/:userID?" render={() => <ProfileMainContainer
+                       store={props.store}
+                        // @ts-ignore
+                        newPostData={props.newPostData} />}/>
                     <Route path="/Dialogs" render={() =><DialogContainer1/>
                         /*<DialogsContainer dialodsData={props.dialodsData}
                                           messageData={props.messageData}
