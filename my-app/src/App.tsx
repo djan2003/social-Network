@@ -10,12 +10,13 @@ import {StoreType} from "./redux/redux-store";
 import  {DialogContainer1} from "./component/Dialogs/DialogsContainer";
 import {UsersContainer} from "./component/Users/UsersContainer";
 import {ProfileContainer, ProfileMainContainer} from "./component/Profile/ProfileContainer";
+import { MainHaderContainer} from "./component/Header/HeaderContainer";
 
 function App() {
     return (
         <BrowserRouter>
             <div className={s.appWrapper}>
-                <Header/>
+                <MainHaderContainer/>
 
                 <Nav/>
                 <div className={s.content}>

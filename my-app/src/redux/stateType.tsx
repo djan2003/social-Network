@@ -2,6 +2,7 @@ import React from "react";
 import {AddPostActionType, ChageTextForPostActionType, setUsersProfileActionType} from "./ProfilePageReducer";
 import {addMessage,  changetextForMessage} from "./DialogsPageReducer";
 import {follow, setCurrentPage, setTotalUsersCount, setUsers, toogleIsFetching, unFollow} from "./UsersReducer";
+import {SetAuthActionType} from "./AuthReducer";
 
 export type newPostDataType = {
     id: number
@@ -26,6 +27,7 @@ export type ActionType = AddPostActionType |
     setTotalUsersCountAC|
     toogleIsFetchingACType|
     setUsersProfileActionType|
+    SetAuthActionType|
     setUsersACType;
 
 type  ChangetextForMessageType = ReturnType<typeof  changetextForMessage>
