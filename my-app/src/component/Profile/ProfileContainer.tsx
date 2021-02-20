@@ -1,6 +1,6 @@
 import React from "react";
 import {newPostDataType} from "../../redux/stateType";
-import {StoreType} from "../../redux/redux-store";
+import {RootState, StoreType} from "../../redux/redux-store";
 import Profile from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
@@ -26,8 +26,32 @@ type MapStateToPropsType ={
     newPostData:Array<newPostDataType>
 
 }
+type ContactsType={
+    github: string
+    vk: string
+    facebook:string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink:string
+
+}
+type PhotoType={
+    small:string|null
+    large:string|null
+}
+type ProfileType={
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription:string
+    fullName: string
+    contacts:ContactsType
+    photos:PhotoType
+
+}
 type MapDispatchToProps={
-    setUsersProfile:(profile:any)=>void
+    setUsersProfile:(profile:ProfileType)=>void
 }
 export class ProfileContainer extends React.Component<PropsType>{
     componentDidMount(): void {
@@ -44,7 +68,7 @@ export class ProfileContainer extends React.Component<PropsType>{
     }
 }
 
-const mapStateToProps=(state:any):MapStateToPropsType=>{
+const mapStateToProps=(state:RootState):MapStateToPropsType=>{
     return{
 profile:state.profilePageReduser.profile,
         newPostData:state.profilePageReduser.newPostData

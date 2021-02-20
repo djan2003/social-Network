@@ -6,6 +6,7 @@ import {AuthReduser} from "./AuthReducer";
 
 
 export type StoreType = typeof store;
+export type RootState = ReturnType<typeof redusers>;
 let redusers =combineReducers({
     profilePageReduser,
     dialogsPageReduser,

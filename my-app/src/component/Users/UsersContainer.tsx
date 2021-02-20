@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import {UsersClearComponent} from "./UsersClearComponent";
 import preloader from "../../accets/preloader.gif"
+import {RootState} from "../../redux/redux-store";
 
 type PropsType={
     toogleIsFetching:(isFetching:boolean)=>void
@@ -73,7 +74,7 @@ class UsersAPIComponent extends React.Component<PropsType>{
     }
 }
 
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state:RootState) => {
     return {
         users: state.usersReduser.users,
         pageSize: state.usersReduser.pageSize,
