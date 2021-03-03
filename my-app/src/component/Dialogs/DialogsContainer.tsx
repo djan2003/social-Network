@@ -21,7 +21,7 @@ type mapDispatchToPropsType= {
 }
 let mapStateToProps=(state:RootState):mapStateToPropsType=>{
     return{
-        dialogsData:state.dialogsPageReduser.dialodsData,
+        dialogsData:state.dialogsPageReduser.dialogsData,
         messageData:state.dialogsPageReduser.messageData,
         newMessageText:state.dialogsPageReduser.newMessageText
 

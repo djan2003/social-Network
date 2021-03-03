@@ -1,5 +1,5 @@
  import React from "react";
- import {ActionType} from "./stateType";
+ import {ActionType, diaologsDataType, messageDataType} from "./stateType";
 
 export const changetextForMessage = ( newMessageText:string)=>{
     return{
@@ -13,8 +13,13 @@ export const addMessage = ( messageText:string)=>{
         messageText: messageText
     } as const
 }
-let initialState = {
-    dialodsData:[
+type initialStateType = {
+    dialogsData:Array<diaologsDataType>
+    messageData:Array<messageDataType>
+    newMessageText:string
+}
+let initialState:initialStateType = {
+    dialogsData:[
         {name: "Slava", id: 1},
         {name: "Anna", id: 2},
         {name: "Alina", id: 3},

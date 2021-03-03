@@ -13,6 +13,7 @@ import {ProfileContainer, ProfileMainContainer} from "./component/Profile/Profil
 import { MainHaderContainer} from "./component/Header/HeaderContainer";
 
 function App() {
+
     return (
         <BrowserRouter>
             <div className={s.appWrapper}>

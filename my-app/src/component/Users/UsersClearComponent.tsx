@@ -1,9 +1,9 @@
 import React from "react";
-import {profilePageReduser} from "../../redux/ProfilePageReducer";
 import s from "./users.module.css";
 import userPhoto from "../../accets/userPhoto.jpg";
 import {UsersType} from "../../redux/UsersReducer";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 type PropsType={
     onClickHandler:(pageNumber:number)=>void
@@ -44,8 +44,24 @@ export const UsersClearComponent=(props:PropsType)=>{
                     </div>
                     <div>{
                         u.followed
-                            ?<button onClick={()=>{props.Unfollow(u.id)}}>FOLLOW</button>
-                            :<button onClick={()=>{props.follow(u.id)}}>UNFOLLOW</button>
+                            ?<button onClick={()=>{ axios.delete(
+                                `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+                            {withCredentials:true,
+                            headers:{
+                                "api-key":"6914c902-ebb2-47bd-8235-de43c8962e59"
+                            }
+                            })
+                                .then(response => {
+                                    if(response.data.resultCode==0){props.Unfollow(u.id)}} )}}>UNFOLLOW</button>
+                            :<button onClick={()=>{ axios.post(
+                            `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},
+                            {withCredentials:true,
+                                headers:{
+                                    "api-key":"6914c902-ebb2-47bd-8235-de43c8962e59"
+                                }
+                            })
+                                .then(response => {
+                                    if(response.data.resultCode==0){props.follow(u.id)}} )}}>FOLLOW</button>
                     }
 
                     </div>
