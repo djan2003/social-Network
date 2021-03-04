@@ -2,20 +2,12 @@ import React from "react";
 import {newPostDataType} from "../../redux/stateType";
 import {RootState, StoreType} from "../../redux/redux-store";
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
 import {setUsersProfile} from "../../redux/ProfilePageReducer";
 import  {withRouter} from "react-router-dom"
 import { RouteComponentProps } from 'react-router';
+import {API} from "../../api/axios-get";
 
-
-/*type propsType={
-    store:StoreType
-    newPostData:Array<newPostDataType>
-    setUsersProfile:(state:stateType)=>void
-    profile:any
-
-}*/
 type ParamsType={
     userID:string
 }
@@ -56,9 +48,9 @@ type MapDispatchToProps={
 export class ProfileContainer extends React.Component<PropsType>{
     componentDidMount(): void {
         let userID=this.props.match.params.userID
-        axios.get(`https://social-network.samuraijs.com/api/1.0//profile/`+userID)
-            .then(response => {
-                this.props.setUsersProfile(response.data);
+        API.getProfile(userID)
+            .then((data:any) => {
+                this.props.setUsersProfile(data);
             } )
     }
     render(): React.ReactNode {

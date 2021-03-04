@@ -27,6 +27,13 @@ export const toogleIsFetching=(isFetching:boolean)=>{
 
     }as const
 }
+export const toogleFollowingInProgress=(isFollowingInProgress:boolean, userID:number)=>{
+    return{
+        type:"FOLLOWING-IN-PROGRESS",
+        isFollowingInProgress,
+        userID
+    }as const
+}
 export const setCurrentPage=(currentPage:number)=>{
     return{
         type:"SET-CURRENT-PAGE",
@@ -58,13 +65,15 @@ type InitialStateType = {
     totalUsersCount:number
     currentPage:number
     isFetching:boolean
+    followingInProgress:any
 }
 let initialState:InitialStateType = {
     users:[],
     pageSize:5,
     totalUsersCount:0,
     currentPage:1,
-    isFetching:true
+    isFetching:true,
+    followingInProgress:[]
 }
 
 
@@ -101,6 +110,13 @@ export const usersReduser=(state=initialState,action:ActionType)=>{
     }
     else if(action.type==="TOOGLE-IS-FETCHING"){
         return{...state, isFetching:action.isFetching}
+    }
+    else if(action.type==="FOLLOWING-IN-PROGRESS"){
+        return{...state,
+            followingInProgress:action.isFollowingInProgress
+                ?[...state.followingInProgress,action.userID]
+                : state.followingInProgress.filter((id:number)=>id!==action.userID)
+        }
     }
     else return state
 
