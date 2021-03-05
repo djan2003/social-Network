@@ -1,5 +1,6 @@
 import React from "react";
 import {ActionType} from "./stateType";
+import {API} from "../api/axios-get";
 
 export type AddPostActionType=ReturnType<typeof AddPostAC >;
 export type ChageTextForPostActionType=ReturnType<typeof ChageTextForPostAC >;
@@ -33,6 +34,15 @@ let initialState = {
     ],
     newPostText: "",
     profile:{}
+}
+
+export const getProfileThunk=(userID:any)=>{
+    return (dispatch:(action:ActionType)=>void)=>{
+        API.getProfile(userID)
+            .then((data:any) => {
+                dispatch(setUsersProfile(data))
+            } )
+    }
 }
 
 export const profilePageReduser=(state=initialState,action:ActionType)=>{

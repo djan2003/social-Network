@@ -11,6 +11,7 @@ import  {DialogContainer1} from "./component/Dialogs/DialogsContainer";
 import {UsersContainer} from "./component/Users/UsersContainer";
 import {ProfileContainer, ProfileMainContainer} from "./component/Profile/ProfileContainer";
 import { MainHaderContainer} from "./component/Header/HeaderContainer";
+import {Login} from "./component/Login/Login";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
                     }/>
                     <Route path="/Users" render={() => <UsersContainer/>}/>
                     <Route path="/Friends" render={() => <Friends/>}/>
+                    <Route path="/Login" render={() => <Login/>}/>
 
                 </div>
             </div>

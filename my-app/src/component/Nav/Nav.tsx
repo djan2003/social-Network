@@ -18,6 +18,9 @@ return(
         <div>
             <NavLink  activeClassName={s.active} to="/Friends" >Friends</NavLink>
         </div>
+        <div>
+            <NavLink  activeClassName={s.active} to="/Login" >Login</NavLink>
+        </div>
     </nav>
 )
 }

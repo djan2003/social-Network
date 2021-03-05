@@ -1,5 +1,6 @@
 import React from "react";
 import {ActionType} from "./stateType";
+import {API} from "../api/axios-get";
 
 
 export const follow = ( id:number)=>{
@@ -76,6 +77,42 @@ let initialState:InitialStateType = {
     followingInProgress:[]
 }
 
+export const getUsers=(currentPage:number,pageSize:number)=>{
+    return (dispatch:(action:ActionType)=>void)=>{
+        dispatch(toogleIsFetching(true))
+        API.getUsers(currentPage,pageSize)
+            .then((data:any) => {
+                dispatch(toogleIsFetching(false))
+             dispatch(setUsers(data.items))
+               dispatch(setTotalUsersCount(data.totalCount))
+            } )
+
+    }
+}
+export const unFollowThunk=(Users:any,UserID:any)=>{
+    return (dispatch:(action:ActionType)=>void)=>{
+        dispatch(toogleFollowingInProgress(true,UserID))
+        API.unfollow(Users)
+            .then(data => {
+                if (data.resultCode == 0) {
+                    dispatch(unFollow(UserID))
+                }
+                dispatch(toogleFollowingInProgress(false,UserID))
+            })
+    }
+}
+export const FollowThunk=(Users:any, UserID:any)=>{
+    return (dispatch:(action:ActionType)=>void)=>{
+        dispatch(toogleFollowingInProgress(true,UserID))
+        API.follow(Users)
+            .then(data => {
+                if (data.resultCode == 0) {
+                    dispatch(follow(UserID))
+                }
+                dispatch(toogleFollowingInProgress(false,UserID))
+            })}
+
+}
 
 
 export const usersReduser=(state=initialState,action:ActionType)=>{
@@ -119,6 +156,6 @@ export const usersReduser=(state=initialState,action:ActionType)=>{
         }
     }
     else return state
-
-
 }
+
+
