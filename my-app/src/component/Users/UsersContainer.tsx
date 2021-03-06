@@ -1,6 +1,5 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
 import {
     follow, FollowThunk,
     getUsers,
@@ -12,6 +11,7 @@ import {
 import {UsersClearComponent} from "./UsersClearComponent";
 import preloader from "../../accets/preloader.gif"
 import {RootState} from "../../redux/redux-store";
+import {WithAuthRedirect} from "../../Hoc/withAuthRedirect";
 
 type PropsType = {
     isFetching: boolean
@@ -27,7 +27,6 @@ type PropsType = {
     getUsers: (currentPage: number, pageSize: number) => void
     unFollowThunk: (Users: any, UserID: any) => void
     FollowThunk: (Users: any, UserID: any) => void
-    isAuth: boolean
 
 }
 
@@ -42,10 +41,8 @@ class UsersAPIComponent extends React.Component<PropsType> {
     }
 
     render(): React.ReactNode {
-        if (!this.props.isAuth) return <Redirect to={"/Login"}/>
         return (
             <>
-
                 {this.props.isFetching ? <img src={preloader}/> : null}
                 <UsersClearComponent
                     pageSize={this.props.pageSize}
@@ -75,12 +72,11 @@ let mapStateToProps = (state: RootState) => {
         currentPage: state.usersReduser.currentPage,
         isFetching: state.usersReduser.isFetching,
         followingInProgress: state.usersReduser.followingInProgress,
-        isAuth: state.AuthReduser.isAuth
     }
 }
 
 
-export const UsersContainer = connect(mapStateToProps, {
+export const UsersContainer = WithAuthRedirect(  connect(mapStateToProps, {
     follow,
     unFollow,
     setCurrentPage,
@@ -88,4 +84,4 @@ export const UsersContainer = connect(mapStateToProps, {
     getUsers,
     unFollowThunk,
     FollowThunk
-})(UsersAPIComponent);
+})(UsersAPIComponent))
