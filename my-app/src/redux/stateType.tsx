@@ -1,5 +1,10 @@
 import React from "react";
-import {AddPostActionType, ChageTextForPostActionType, setUsersProfileActionType} from "./ProfilePageReducer";
+import {
+    AddPostActionType,
+    ChageTextForPostActionType, changeStatusProfileAC,
+    getStatusProfileAC,
+    setUsersProfileActionType
+} from "./ProfilePageReducer";
 import {addMessage,  changetextForMessage} from "./DialogsPageReducer";
 import {
     follow,
@@ -36,6 +41,8 @@ export type ActionType = AddPostActionType |
     setUsersProfileActionType|
     SetAuthActionType|
     toogleFollowingInProgressACType|
+    getStatusProfileACType|
+    changeStatusProfileACType|
     setUsersACType;
 
 type  ChangetextForMessageType = ReturnType<typeof  changetextForMessage>
@@ -47,3 +54,5 @@ type  UnFollowACType = ReturnType<typeof unFollow>
 type  setCurrentPageAC = ReturnType<typeof setCurrentPage>
 type   setTotalUsersCountAC = ReturnType<typeof  setTotalUsersCount>
 type  AddNewMessageType = ReturnType<typeof addMessage>
+type getStatusProfileACType = ReturnType<typeof getStatusProfileAC>
+type changeStatusProfileACType = ReturnType<typeof changeStatusProfileAC>

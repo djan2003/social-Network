@@ -1,4 +1,5 @@
 import React from "react";
+import { compose } from "redux"
 import {connect} from "react-redux";
 import {
     follow, FollowThunk,
@@ -75,7 +76,16 @@ let mapStateToProps = (state: RootState) => {
     }
 }
 
-
+export default compose<React.ComponentType>(WithAuthRedirect,connect(mapStateToProps, {
+    follow,
+    unFollow,
+    setCurrentPage,
+    toogleFollowingInProgress,
+    getUsers,
+    unFollowThunk,
+    FollowThunk
+}))(UsersAPIComponent)
+/*
 export const UsersContainer = WithAuthRedirect(  connect(mapStateToProps, {
     follow,
     unFollow,
@@ -84,4 +94,4 @@ export const UsersContainer = WithAuthRedirect(  connect(mapStateToProps, {
     getUsers,
     unFollowThunk,
     FollowThunk
-})(UsersAPIComponent))
+})(UsersAPIComponent))*/

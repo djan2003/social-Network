@@ -47,6 +47,7 @@ export const setTotalUsersCount=(totalUsersCount:number)=>{
         totalUsersCount
     }as const
 }
+
 type LocationType={
     city:string
     country:string

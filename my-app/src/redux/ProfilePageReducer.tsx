@@ -1,6 +1,6 @@
 import React from "react";
 import {ActionType} from "./stateType";
-import {API} from "../api/axios-get";
+import {API, APIForProfile} from "../api/axios-get";
 
 export type AddPostActionType=ReturnType<typeof AddPostAC >;
 export type ChageTextForPostActionType=ReturnType<typeof ChageTextForPostAC >;
@@ -25,6 +25,18 @@ export const setUsersProfile = ( profile:any)=>{
         profile
     } as const
 }
+export const getStatusProfileAC=(status:string)=>{
+    return{
+        type:"GET-STATUS-PROFILE",
+        status
+    }as const
+}
+export const changeStatusProfileAC=(status: string)=>{
+    return{
+        type:"CHANGE-STATUS-PROFILE",
+        status
+    }as const
+}
 
 let initialState = {
     newPostData: [
@@ -33,7 +45,8 @@ let initialState = {
         {id: 1, likes: 1258, postName: "Это третий пост"},
     ],
     newPostText: "",
-    profile:{}
+    profile:{},
+    status:"status from initialState"
 }
 
 export const getProfileThunk=(userID:any)=>{
@@ -41,6 +54,24 @@ export const getProfileThunk=(userID:any)=>{
         API.getProfile(userID)
             .then((data:any) => {
                 dispatch(setUsersProfile(data))
+            } )
+    }
+}
+export const getStatusProfileThunk=(userID: string)=>{
+    return (dispatch:(action:ActionType)=>void)=>{
+        APIForProfile.getStatusProfile(userID)
+            .then((data:any) => {
+                dispatch(getStatusProfileAC(data))
+            } )
+    }
+}
+export const changeStatusProfileThunk=(status:string)=>{
+    return (dispatch:(action:ActionType)=>void)=>{
+        APIForProfile.changeProfileStatus(status)
+            .then((response:any) => {
+                if(response.data.resultCode===0){
+                    dispatch(changeStatusProfileAC(status))}
+
             } )
     }
 }
@@ -69,6 +100,20 @@ export const profilePageReduser=(state=initialState,action:ActionType)=>{
             let stateCopy = {...state}
             stateCopy.profile=action.profile;
             return stateCopy
+        }
+        else if (action.type === "CHANGE-STATUS-PROFILE"){
+            return {
+                ...state,
+                status:action.status
+            }
+        }
+        else if (action.type === "GET-STATUS-PROFILE"){
+                let stateCopy = {...state}
+                stateCopy.status=action.status;
+                return stateCopy
+              /*  ...state,
+                status:action.status*/
+
         }
         return state;
     }

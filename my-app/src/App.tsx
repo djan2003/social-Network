@@ -1,15 +1,11 @@
 import React from 'react';
 import s from './App.module.css';
-import Header from "./component/Header/Header";
 import Nav from "./component/Nav/Nav";
-import Profile from "./component/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import Friends from "./component/Friends/Friends";
-import {ActionType, diaologsDataType, messageDataType, newPostDataType} from "./redux/stateType";
-import {StoreType} from "./redux/redux-store";
 import  {DialogContainer1} from "./component/Dialogs/DialogsContainer";
-import {UsersContainer} from "./component/Users/UsersContainer";
-import {ProfileContainer, ProfileMainContainer} from "./component/Profile/ProfileContainer";
+import UsersContainer from "./component/Users/UsersContainer";
+import ProfileMainContainer from "./component/Profile/ProfileContainer";
 import { MainHaderContainer} from "./component/Header/HeaderContainer";
 import {Login} from "./component/Login/Login";
 
