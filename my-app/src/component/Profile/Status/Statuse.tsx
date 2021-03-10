@@ -22,6 +22,14 @@ state={
         // @ts-ignore
         this.props.updateStatus(this.state.status);
     }
+componentDidUpdate(prevProps: Readonly<PropsType>, prevState:any): void {
+    if(prevProps.status!==this.props.status){
+this.setState({
+    status:this.props.status
+})
+    }
+
+}
 
     onStatusChange = (e:any) => {
         this.setState({
