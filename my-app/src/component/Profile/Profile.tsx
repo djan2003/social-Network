@@ -24,7 +24,8 @@ function Profile(props:propsType) {
                 src="https://avatars.mds.yandex.net/get-pdb/1491599/1d3cac8b-2410-4c51-8abe-453d701707c1/orig"></img>
             <Ava profile={props.profile}/>
             <Status  updateStatus={props.updateStatus} status={props.status} />
-          {/*<StatusWithHook updateStatus={props.updateStatus} status={props.status}  />*/}
+           {/* сделал компопонент на хуках для тренировки*/}
+         {/* <StatusWithHook updateStatus={props.updateStatus} status={props.status}  />*/}
          <MyPost/>
          <NewPostContainer1/>
             <div>

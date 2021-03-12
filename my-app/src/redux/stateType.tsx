@@ -1,7 +1,7 @@
 import React from "react";
 import {
     AddPostActionType,
-    ChageTextForPostActionType, changeStatusProfileAC,
+    changeStatusProfileAC,
     getStatusProfileAC,
     setUsersProfileActionType
 } from "./ProfilePageReducer";
@@ -30,7 +30,6 @@ export type messageDataType = {
     id: number
 }
 export type ActionType = AddPostActionType |
-    ChageTextForPostActionType |
     ChangetextForMessageType |
     AddNewMessageType |
     FollowACType |

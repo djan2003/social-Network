@@ -1,6 +1,10 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 
 export const StatusWithHook = (props:any)=>{
+    useEffect(()=>{
+        setChangeStatuse(props.status)
+    },[props.status])
+
      let [EditStatus,setEditStatus]=useState(false)
     const changeStatus=()=>{
         setEditStatus(!EditStatus)
@@ -16,7 +20,7 @@ export const StatusWithHook = (props:any)=>{
 
     return(
 <div>
-    {EditStatus
+    {!EditStatus
         ?<span onDoubleClick={changeStatus}>{changeTextStatus}</span>
         : <input onChange={changeStatusForeSpane} autoFocus={true}
                  onBlur={changeStatuseForeInpute} value={changeTextStatus}/>

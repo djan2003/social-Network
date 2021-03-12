@@ -3,20 +3,13 @@ import {ActionType} from "./stateType";
 import {API, APIForProfile} from "../api/axios-get";
 
 export type AddPostActionType=ReturnType<typeof AddPostAC >;
-export type ChageTextForPostActionType=ReturnType<typeof ChageTextForPostAC >;
 export type setUsersProfileActionType=ReturnType<typeof setUsersProfile >;
 
 
 export const AddPostAC = (newPostText:string)=>{
     return{
         type :"ADD-POST",
-        newPostText:newPostText
-    } as const
-}
-export const ChageTextForPostAC = ( newText:string)=>{
-    return{
-        type:"CHANGE-TEXT-FOR-POST",
-        newText: newText
+        newPostText
     } as const
 }
 export const setUsersProfile = ( profile:any)=>{
@@ -44,7 +37,7 @@ let initialState = {
         {id: 1, likes: 12, postName: "Это второй пост"},
         {id: 1, likes: 1258, postName: "Это третий пост"},
     ],
-    newPostText: "",
+    /*newPostText: "",*/
     profile:{},
     status:"status from initialState"
 }
@@ -87,14 +80,8 @@ export const profilePageReduser=(state=initialState,action:ActionType)=>{
             let stateCopy={...state}
             stateCopy.newPostData=[...state.newPostData]
             stateCopy.newPostData.push(newPost)
-            stateCopy.newPostText="";
             return stateCopy
 
-        }
-        else if (action.type === "CHANGE-TEXT-FOR-POST"){
-            let stateCopy = {...state}
-            stateCopy.newPostText=action.newText;
-            return stateCopy
         }
         else if (action.type === "SET-USERS-PROFILE"){
             let stateCopy = {...state}

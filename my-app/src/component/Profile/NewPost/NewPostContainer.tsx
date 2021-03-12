@@ -1,6 +1,6 @@
 import React from "react";
 
-import {AddPostAC, ChageTextForPostAC} from "../../../redux/ProfilePageReducer";
+import {AddPostAC} from "../../../redux/ProfilePageReducer";
 import NewPost from "./NewPost";
 import {connect} from "react-redux";
 import {ActionType} from "../../../redux/stateType";
@@ -13,7 +13,6 @@ let mapStateToProps = (state: any) => {
 }
 let mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
     return{
-        changeTextForPost:(text: string)=>dispatch(ChageTextForPostAC(text)),
         addPost:(text:string)=>dispatch( AddPostAC(text))
     }
 
