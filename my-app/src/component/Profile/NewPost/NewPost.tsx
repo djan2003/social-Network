@@ -6,11 +6,13 @@ type propsType={
     addPost:(text:string)=>void
 }
 
-
+type valueType = {
+    textForNewPost:string
+}
 
 function NewPost(props:propsType) {
 
-    const onSubmit = (value:any)=>{
+    const onSubmit = (value:valueType)=>{
         props.addPost(value.textForNewPost)
     }
 return(

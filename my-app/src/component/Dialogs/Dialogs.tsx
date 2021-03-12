@@ -12,13 +12,16 @@ type PropsType={
     dialogsData: Array<diaologsDataType>
     messageData: Array<messageDataType>
 }
+type ValueType = {
+    textForNewMessage:string
+}
 
 const Dialogs = (props:PropsType) => {
     let dialogsElement: Array<JSX.Element>= props.dialogsData.map(d=> <Dialog name={d.name} id={d.id}/> );
     let itemsElement:Array<JSX.Element> = props.messageData.map(m=><ItemsForDialog text={m.text}/>)
 
 
-    const addMessage = (value:any)=>{
+    const addMessage = (value:ValueType)=>{
             props.addMessage(value.textForNewMessage)
 
     }

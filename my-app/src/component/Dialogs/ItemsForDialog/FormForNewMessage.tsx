@@ -4,7 +4,7 @@ import {InjectedFormProps} from "redux-form/lib/reduxForm";
 import {FormDataTypeForNewPost} from "../../Profile/NewPost/FormForNewPost";
 
 export type FormDataTypeFormForNewMessage ={
-    textForNewPost:string
+    textForNewMessage:string
 }
 
 
