@@ -1,6 +1,5 @@
-import React, {ChangeEvent} from "react";
-import {FormDataTypeForNewPost, FormForNewPost, ReduxFormForNewPost} from "./FormForNewPost";
-import {FormDataType} from "../../Login/formForLogin";
+import React from "react";
+import { ReduxFormForNewPost} from "./FormForNewPost";
 
 type propsType={
     newPostText:string
@@ -10,7 +9,6 @@ type propsType={
 
 
 function NewPost(props:propsType) {
-
 
     const onSubmit = (value:any)=>{
         props.addPost(value.textForNewPost)

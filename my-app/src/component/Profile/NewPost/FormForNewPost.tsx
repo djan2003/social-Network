@@ -3,9 +3,9 @@ import {Field,reduxForm} from "redux-form";
 import {InjectedFormProps} from "redux-form/lib/reduxForm";
 
 export type FormDataTypeForNewPost ={
-    textForNewPost:any
+    textForNewPost:string
 }
-export const FormForNewPost:React.FC<InjectedFormProps<FormDataTypeForNewPost>> =(props:any)=>{
+export const FormForNewPost:React.FC<InjectedFormProps<FormDataTypeForNewPost>> =(props)=>{
     return(
         <form onSubmit={props.handleSubmit}>
             <div>

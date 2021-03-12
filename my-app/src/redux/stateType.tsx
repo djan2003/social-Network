@@ -5,7 +5,7 @@ import {
     getStatusProfileAC,
     setUsersProfileActionType
 } from "./ProfilePageReducer";
-import {addMessage,  changetextForMessage} from "./DialogsPageReducer";
+import {addMessage} from "./DialogsPageReducer";
 import {
     follow,
     setCurrentPage,
@@ -30,7 +30,6 @@ export type messageDataType = {
     id: number
 }
 export type ActionType = AddPostActionType |
-    ChangetextForMessageType |
     AddNewMessageType |
     FollowACType |
     UnFollowACType|
@@ -44,7 +43,6 @@ export type ActionType = AddPostActionType |
     changeStatusProfileACType|
     setUsersACType;
 
-type  ChangetextForMessageType = ReturnType<typeof  changetextForMessage>
 type  toogleIsFetchingACType = ReturnType<typeof toogleIsFetching>
 type  toogleFollowingInProgressACType = ReturnType<typeof toogleFollowingInProgress>
 type  setUsersACType = ReturnType<typeof setUsers>

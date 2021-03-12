@@ -1,22 +1,16 @@
  import React from "react";
  import {ActionType, diaologsDataType, messageDataType} from "./stateType";
 
-export const changetextForMessage = ( newMessageText:string)=>{
-    return{
-        type:"CHANGE-TEXT-FOR-MESSAGE",
-        newMessageText: newMessageText
-    } as const
-}
+
 export const addMessage = ( messageText:string)=>{
     return{
         type:"ADD-NEW-MESSAGE",
-        messageText: messageText
+        messageText
     } as const
 }
 type initialStateType = {
     dialogsData:Array<diaologsDataType>
     messageData:Array<messageDataType>
-    newMessageText:string
 }
 let initialState:initialStateType = {
     dialogsData:[
@@ -31,8 +25,7 @@ let initialState:initialStateType = {
         {text: "Привет", id: 1},
         {text: "Пока", id: 2},
         {text: "АГА", id: 3},
-    ],
-    newMessageText:""
+    ]
 }
 
 
@@ -47,13 +40,6 @@ export const dialogsPageReduser=(state=initialState,action:ActionType)=>{
         return {
             ...state,
             messageData: [...state.messageData,newMessage],
-            newMessageText: ""
-        }
-
-    } else if (action.type === "CHANGE-TEXT-FOR-MESSAGE") {
-        return {
-            ...state,
-            newMessageText: action.newMessageText
         }
 
     }

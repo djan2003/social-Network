@@ -3,28 +3,24 @@ import s from "./Dialogs.module.css"
 import Dialog from "./Dialog/Dialog";
 import ItemsForDialog from "./ItemsForDialog/ItemsForDialog";
 import {diaologsDataType, messageDataType} from "../../redux/stateType";
+import {FormDataTypeFormForNewMessage, ReduxFormForNewMessage} from "./ItemsForDialog/FormForNewMessage";
+import {InjectedFormProps} from "redux-form/lib/reduxForm";
 
 
 type PropsType={
     addMessage:(text:string)=>void
-    changetextForMessage:(text:string)=>void
     dialogsData: Array<diaologsDataType>
     messageData: Array<messageDataType>
-    newMessageText:string
 }
 
 const Dialogs = (props:PropsType) => {
     let dialogsElement: Array<JSX.Element>= props.dialogsData.map(d=> <Dialog name={d.name} id={d.id}/> );
     let itemsElement:Array<JSX.Element> = props.messageData.map(m=><ItemsForDialog text={m.text}/>)
-    const newMessageElement= React.createRef<HTMLTextAreaElement>();
 
-    const onChangeHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>{
-        props.changetextForMessage(e.currentTarget.value)}
-    const addMessage = ()=>{
-        if (newMessageElement.current){
-            props.addMessage(newMessageElement.current.value)
-            newMessageElement.current.value=""
-        }
+
+    const addMessage = (value:any)=>{
+            props.addMessage(value.textForNewMessage)
+
     }
     return (
         <div className={s.dialogs}>
@@ -33,8 +29,8 @@ const Dialogs = (props:PropsType) => {
             </div>
             <div className={s.items}>
                 {itemsElement}
-                <textarea onChange={onChangeHandler} ref={newMessageElement} value={props.newMessageText}></textarea>
-                <button onClick={addMessage}>сообщение</button>
+                <ReduxFormForNewMessage onSubmit={addMessage}/>
+
             </div>
 
         </div>
