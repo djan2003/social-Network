@@ -1,6 +1,8 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
 import {InjectedFormProps} from "redux-form/lib/reduxForm";
+import {InputeForForm} from "../../common/TexareaForForm";
+import {reguiredField} from "../../utilites/helper";
 
 export type FormDataType ={
     login:string
@@ -14,13 +16,15 @@ export const FormForLogin:React.FC<InjectedFormProps<FormDataType>> =
     return(
         <form onSubmit={props.handleSubmit} >
             <div>
-                <Field name={"login"} component={"input"} placeholder={"login"}/>
+                <Field name={"login"} component={InputeForForm}
+                       placeholder={"login"} validate={[reguiredField]} />
             </div>
             <div>
-                <Field name={"password"} component={"input"} placeholder={"password"}/>
+                <Field name={"password"} component={InputeForForm}
+                       placeholder={"password"} validate={[reguiredField]} />
             </div>
             <div>
-                <Field  name={"rememberMe"} component={"input"} type={"checkbox"}/>remember me
+                <Field  name={"rememberMe"} component={InputeForForm} type={"checkbox"}/>remember me
             </div>
             <div>
                <button>LOGIN</button>
