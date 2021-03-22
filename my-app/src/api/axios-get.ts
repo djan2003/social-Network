@@ -29,8 +29,15 @@ export const API = {
     auth(){
         return instance.get(`auth/me`)
             .then((response: any) => response.data)
-    }
-
+    },
+    login(email:any,password:any,rememberMe:any=false){
+        return instance.post(`auth/login`,{email,password,rememberMe})
+            .then((response: any) => response.data)
+    },
+    logout(){
+        return instance.delete(`auth/login`)
+            .then((response: any) => response.data)
+    },
 
 }
 

@@ -44,7 +44,9 @@ class UsersAPIComponent extends React.Component<PropsType> {
     render(): React.ReactNode {
         return (
             <>
-                {this.props.isFetching ? <img src={preloader}/> : null}
+                {this.props.isFetching
+                    ? <img src={preloader}/>
+                    : null}
                 <UsersClearComponent
                     pageSize={this.props.pageSize}
                     totalUsersCount={this.props.totalUsersCount}

@@ -15,6 +15,7 @@ import {
     unFollow
 } from "./UsersReducer";
 import {SetAuthActionType} from "./AuthReducer";
+import {getInitializedActionType} from "./AppReducer";
 
 export type newPostDataType = {
     id: number
@@ -29,7 +30,9 @@ export type messageDataType = {
     text: string
     id: number
 }
-export type ActionType = AddPostActionType |
+export type ActionType =
+    getInitializedActionType|
+    AddPostActionType |
     AddNewMessageType |
     FollowACType |
     UnFollowACType|

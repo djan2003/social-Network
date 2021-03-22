@@ -3,7 +3,6 @@ import s from "./users.module.css";
 import userPhoto from "../../accets/userPhoto.jpg";
 import {UsersType} from "../../redux/UsersReducer";
 import {NavLink} from "react-router-dom";
-import {API} from "../../api/axios-get";
 
 type PropsType = {
     onClickHandler: (pageNumber: number) => void
@@ -52,26 +51,10 @@ export const UsersClearComponent = (props: PropsType) => {
                             ? <button disabled={props.followingInProgress
                                 .some((id: number) => id == u.id)}
                                       onClick={() => {props.unFollowThunk(u,u.id)
-                                          /*props.toogleFollowingInProgress(true,u.id)
-                                          API.unfollow(u)
-                                              .then(data => {
-                                                  if (data.resultCode == 0) {
-                                                      props.Unfollow(u.id)
-                                                  }
-                                                  props.toogleFollowingInProgress(false,u.id)
-                                              })*/
                                       }}>UNFOLLOW</button>
                             : <button  disabled={props.followingInProgress
                                 .some((id: number) => id == u.id)} onClick={() => {
                                     props.FollowThunk(u,u.id)
-                                /*props.toogleFollowingInProgress(true,u.id)
-                                API.follow(u)
-                                    .then(data => {
-                                        if (data.resultCode == 0) {
-                                            props.follow(u.id)
-                                        }
-                                        props.toogleFollowingInProgress(false,u.id)
-                                    })*/
                             }}>FOLLOW</button>
                     }
 
